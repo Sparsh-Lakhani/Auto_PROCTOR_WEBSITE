@@ -1,0 +1,63 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Secular One', sans-serif;
+    background-color: rgb(235, 235, 235);
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 200px;
+    background-color: #fff; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* .logo img{
+    padding: 20px 0px 0px 20px;
+    width: 50px;
+} */
+.nav ul{
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li{  
+    padding: 0px 1rem;
+}
+
+.nav ul li a{
+    padding: 0px 30px;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.nav ul li a:hover{
+    color: rgb(16, 16, 168);
+}
+
+.search{
+    border: 1px solid black;
+    padding: 7px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search i{
+    padding: 0px 7px;
+}
+.search input {
+    outline-style: none;
+    border: none;
+    width: 200px;
+}
+
+.card1{
+    color: green;
+}

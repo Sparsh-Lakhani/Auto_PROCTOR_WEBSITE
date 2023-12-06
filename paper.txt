@@ -1,0 +1,5 @@
+what is Python? programming language style sheet 
+are strings immutable in Python? yes no 
+which module is used for data science in Python? Pandas math
+copy cheating question answer paper give option second first 
+exam one two three

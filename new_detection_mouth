@@ -1,0 +1,103 @@
+import cv2
+import dlib
+import numpy as np
+
+# Load face detector and predictor
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
+
+# Load video
+cap = cv2.VideoCapture(0)
+
+# Initialize variables
+lip_y = []
+outer_lip_indices = [0, 6, 11, 12, 13, 14, 15]
+inner_lip_indices = [2, 3, 4, 5, 7, 8, 9, 10]
+
+# Define minimum lip distance threshold for talking detection
+min_lip_distance = 15
+
+# Define minimum number of consecutive frames with talking to trigger event
+num_consecutive_talk_frames = 5
+
+# Initialize talk status
+is_talking = False
+talk_frames = 0
+
+while True:
+    # Read frame from video
+    ret, frame = cap.read()
+    
+    # Convert to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # Detect faces in the grayscale frame
+    faces = detector(gray)
+    
+    # Loop through detected faces
+    for face in faces:
+        # Get facial landmarks for the face
+        landmarks = predictor(gray, face)
+        
+        # Get coordinates of outer and inner lips
+        outer_lip_coords = np.array([(landmarks.part(i).x, landmarks.part(i).y) for i in outer_lip_indices])
+        inner_lip_coords = np.array([(landmarks.part(i).x, landmarks.part(i).y) for i in inner_lip_indices])
+        
+        # Calculate distances between lips
+        outer_distances = [outer_lip_coords[i][1] - outer_lip_coords[-i-1][1] for i in range(4)]
+        inner_distances = [inner_lip_coords[i][1] - inner_lip_coords[-i-1][1] for i in range(2)]
+        
+        # Calculate average lip distance
+        avg_lip_distance = np.mean(outer_distances + inner_distances)
+        
+        # Add current lip distance to list
+        lip_y.append(avg_lip_distance)
+        
+        # If list has more than 3 elements, remove oldest element
+        if len(lip_y) > 3:
+            lip_y.pop(0)
+        
+        # Check if current lip distance is greater than threshold
+        if avg_lip_distance > min_lip_distance:
+            # If current frame is first frame with talking, set is_talking to True
+            if not is_talking:
+                is_talking = True
+                talk_frames = 1
+            # If current frame is not first frame with talking, increment talk_frames
+            else:
+                talk_frames += 1
+        # If current lip distance is less than or equal to threshold
+        else:
+            # If current frame is first frame without talking, set is_talking to False
+            if is_talking:
+                is_talking = False
+                talk_frames = 0
+            # If current frame is not first frame without talking, increment talk_frames
+            else:
+                talk_frames += 1
+        
+        # If number of consecutive frames with talking exceeds threshold, print message
+        if talk_frames >= num_consecutive_talk_frames:
+            print("Talking detected!")
+        
+                # Draw lip landmarks on frame
+        for i in outer_lip_indices:
+            cv2.circle(frame, outer_lip_coords[i], 2, (0, 0, 255), -1)
+        for i in inner_lip_indices:
+            cv2.circle(frame, inner_lip_coords[i], 2, (0, 255, 0), -1)
+        
+        # Draw lips on frame
+        cv2.polylines(frame, [outer_lip_coords], True, (0, 0, 255), 2)
+        cv2.polylines(frame, [inner_lip_coords], True, (0, 255, 0), 2)
+        
+        # Display frame
+        cv2.imshow('frame', frame)
+        
+    # Exit on 'q' keypress
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Release video capture and close window
+cap.release()
+cv2.destroyAllWindows()
+

@@ -1,0 +1,93 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+.registration-form {
+  padding: 30px;
+}
+.registration-form input {
+  width: 460px;
+}
+.registration-form select {
+  margin: 1rem;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+}
+.capturedimage {
+  display: flex;
+  flex-direction: column;
+}
+.controller {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.card1 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1150px;
+  height: 650px;
+  border: 2px solid black;
+  background-color: #e8e6fe !important;
+}
+.card1 .forBorder {
+  width: 800px;
+  border: 1px solid black;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.btn1,
+.btn1:link,
+.btn1:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+  background-color: #45ccc6;
+  color: white;
+  width: 50px;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+}
+.btn1:hover {
+  transform: translate(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.selectClass {
+  background-color: rgb(54, 54, 54);
+}
+
+.registered {
+  display: table;
+  margin: 0 auto;
+}
+
+span {
+  margin-left: 5px;
+  font-size: 17px;
+  font-weight: bold;
+}

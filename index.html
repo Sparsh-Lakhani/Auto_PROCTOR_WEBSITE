@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Proctoring</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap"
+      rel="stylesheet"
+    />
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+      />
+      <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <div class="login">
+      <div class="txt">
+        <div class="welcome">
+          <div class="d-flex flex-row" logo>
+            <img src="../static/logo.jpg" alt="" width="90" />
+            <span class="align-center">Auto Proctor</span>
+          </div>
+          <hr />
+          <h3>Sign In to Continue to your account.</h2>
+        </div>
+      </div>
+      <div class="loginDetails">
+        <form action="{{url_for('login')}}" method="post" class="vertical-center">
+          <input type="text" name="register" class="register" id="register" placeholder="Registration Number" required/><br />
+          <input type="password" name="password" class="password" id="password" placeholder="Password" required/><br />
+          <br>
+      
+          <input type="submit" value="Sign In" /><br />
+          <center class="my-2">Not registered yet? <a href="{{url_for('register')}}"><span>Register Now</span></a></center><br>
+          <p style="color: red; font-size: 20px; text-align: center; " >
+            {% if e %}
+            {{e}}
+            {% endif %}
+          </p>
+        </form>
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+
+<form action="{{url_for('login')}}" method="post" class="vertical-center">
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <title>Auto Proctor | Exams</title>
+
+    <style>
+      * {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .timer {
+        font-size: 20px;
+        align-items: center;
+      }
+
+      .nav {
+        background-color: #e8e6fe;
+        padding: 10px 70px;
+      }
+
+      .nav a {
+        margin-top: 10px;
+        font-size: 19px;
+        text-decoration: none;
+      }
+
+      .nav span {
+        margin-left: 5px;
+        font-size: 17px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav d-flex justify-content-between mb-5">
+      <div class="" logo>
+        <img src="../static/logo.jpg" alt="" width="90" />
+        <span>Auto Proctor</span>
+      </div>
+      <a href="#" class="align-bottom" onclick="logout()">Logout</a>
+    </nav>
+    <div class="container my-5">
+      <div class="card w-50">
+        <h5 class="card-header">Python Exam</h5>
+        <div class="card-body">
+          <h5 class="card-title">Coding</h5>
+          <p class="card-text">All the best</p>
+          <a href="{{url_for('recognize')}}" class="btn btn-primary"
+            >Start Exam></a
+          >
+        </div>
+      </div>
+      <br /><br /><br />
+
+      <div class="card w-50">
+        <h5 class="card-header">Maths Exam</h5>
+        <div class="card-body">
+          <h5 class="card-title">Statistics</h5>
+          <p class="card-text">All the best</p>
+          <a href="{{url_for('recognize')}}" class="btn btn-primary"
+            >Start Exam></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function logout() {
+        swal("Fullscreen exit", "You Tried To Exit Fullscreen", "warning", {
+          buttons: {
+            cancel: "Go back!",
+            one: {
+              text: "Log Out",
+              value: 1,
+            },
+          },
+        }).then((value) => {
+          switch (value) {
+            case 1:
+              window.location.href = "/";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
